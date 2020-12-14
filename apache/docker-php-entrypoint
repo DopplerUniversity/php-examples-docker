@@ -1,0 +1,19 @@
+#!/bin/sh
+set -e
+
+echo 'ServerName localhost' >> /etc/apache2/apache2.conf # Silence FQDN warning
+
+if [ !  -z $DOPPLER_TOKEN ]; then
+    echo '\n[info]: Generating env vars using Doppler CLI\n'
+    doppler secrets download --no-file | jq -r '. | to_entries[] | "SetEnv \(.key) \"\(.value)\""' > $APACHE_CONFDIR/conf-available/doppler-env-vars.conf
+    a2enconf doppler-env-vars > /dev/null
+else
+    echo '\n[info]: $DOPPLER_TOKEN not found so skipping creation of env vars file\n'
+fi
+
+# first arg is `-f` or `--some-option`
+if [ "${1#-}" != "$1" ]; then
+	set -- apache2-foreground "$@"
+fi
+
+exec "$@"
