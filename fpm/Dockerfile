@@ -1,4 +1,4 @@
-FROM php:7-apache
+FROM php:7-fpm
 
 # Use to cache bust system dependencies, e.g. Doppler CLI
 ENV LAST_UPDATED 2020-12-16
@@ -11,4 +11,4 @@ COPY app /usr/src/app
 COPY public /var/www/html
 
 # Override existing entrypoint script to conditionally generate env vars file if $DOPPLER_TOKEN var exists
-COPY apache/docker-php-entrypoint /usr/local/bin/
+COPY fpm/docker-php-entrypoint /usr/local/bin/

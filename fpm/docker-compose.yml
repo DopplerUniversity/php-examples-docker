@@ -1,0 +1,30 @@
+version: '3'
+services:
+  php:
+    image: php:7-fpm
+    container_name: php
+    restart: unless-stopped
+    volumes:
+    - ../app:/usr/src/app
+    - ../public:/var/www/html
+    - ./env-vars.conf:/usr/local/etc/php-fpm.d/env-vars.conf
+    tty: true
+    networks:
+      - php
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    volumes:
+    - ../app:/usr/src/app
+    - ../public:/var/www/html
+    - ./php.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '8080:80'
+    networks:
+    - php
+
+networks:
+  php:
