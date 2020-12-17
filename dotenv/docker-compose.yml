@@ -1,14 +1,11 @@
 version: '3'
 services:
   php:
-    image: php:7-fpm
+    image: doppler-php-dotenv
     container_name: php
     restart: unless-stopped
     environment:
       - DOPPLER_TOKEN
-    volumes:
-      - ../app:/usr/src/app
-      - ../public:/var/www/html
     tty: true
     networks:
       - php

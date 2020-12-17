@@ -1,16 +1,17 @@
 <?php
+    $SOURCE = 'Env Vars';
+
+    if (file_exists(__DIR__ . '/vendor/') && file_exists('/usr/src/app/.env')) {
+        require __DIR__ . '/vendor/autoload.php';
+        $SOURCE = '.env file';
+        $dotenv = Dotenv\Dotenv::createUnsafeImmutable('/usr/src/app'); // Allow access via getenv (no thread-safety issues because environment does not change)
+        $dotenv->load();
+    }
+
     $CONFIG = [
-        'DEBUG' => getenv('DEBUG'),
+        'CONFIG_SOURCE' => $SOURCE,
         'DOPPLER_CONFIG' => getenv('DOPPLER_CONFIG'),
         'DOPPLER_ENVIRONMENT' => getenv('DOPPLER_ENVIRONMENT'),
-        'DOPPLER_PROJECT' => getenv('DOPPLER_PROJECT'),
-        'HOSTNAME' => getenv('HOSTNAME'),
-        'LOGGING' => getenv('LOGGING'),
-        'NODE_ENV' => getenv('NODE_ENV'),
-        'PORT' => getenv('PORT'),
-        'RATE_LIMITING_ENABLED' => getenv('RATE_LIMITING_ENABLED'),
-        'TRANSLATION_SUGGESTION' => getenv('TRANSLATION_SUGGESTION'),
-        'YODA_TRANSLATE_API_ENDPOINT' => getenv('YODA_TRANSLATE_API_ENDPOINT'),
-        'YODA_TRANSLATE_API_KEY' => getenv('YODA_TRANSLATE_API_KEY'),
+        'DOPPLER_PROJECT' => getenv('DOPPLER_PROJECT'),        
     ];
 ?>

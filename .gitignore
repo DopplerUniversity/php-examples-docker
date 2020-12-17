@@ -1,1 +1,5 @@
-*.conf
+*.env
+.DS_Store
+fpm/env-vars.conf
+apache/env-vars.conf
+dotenv/.env

@@ -1,6 +1,4 @@
 version: '3'
 services:
   php:
-    image: dopplerhq/php-fpm
-    environment:
-      - DOPPLER_TOKEN
+    image: doppler-php-fpm
