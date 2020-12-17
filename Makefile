@@ -49,8 +49,8 @@ dotenv-build:
 
 # Custom Docker image with embedded CLI to generate .env file inside container
 # Expects `DOPPLER_TOKEN` env var to be set
-dotenv-token: dotenv-build
-	./bin/dotenv-token.sh
+dotenv-doppler-token: dotenv-build
+	./bin/dotenv-doppler-token.sh
 
 # Mount .env file inside container
 dotenv-file: dotenv-build
