@@ -3,3 +3,5 @@
 fpm/env-vars.conf
 apache/env-vars.conf
 dotenv/.env
+vendor
+mysql

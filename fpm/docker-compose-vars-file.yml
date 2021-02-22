@@ -1,7 +1,6 @@
 version: '3'
 services:
   php:
-    image: doppler-php-fpm
-    # Override for volume mounting env-vars.confg
+    image: doppler-php-fpm    
     volumes:
-      - ./env-vars.conf:/usr/local/etc/php-fpm.d/env-vars.conf
+      - ./env-vars.conf:/usr/local/etc/php-fpm.d/env-vars.conf # Override for volume mounting env-vars.confg

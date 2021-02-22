@@ -1,0 +1,49 @@
+version: '3'
+services:
+    php:
+        image: doppler-laravel
+        container_name: laravel
+        restart: unless-stopped
+        tty: true
+        environment:
+          - DOPPLER_TOKEN
+        volumes:
+          - app-volume:/usr/src/app/
+        networks:
+        - php
+
+    mysql:
+      image: 'mysql:8.0'
+      ports:
+          - '3306:3306'
+      environment:
+        MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+        MYSQL_DATABASE: '${DB_DATABASE}'
+        MYSQL_USER: '${DB_USERNAME}'
+        MYSQL_PASSWORD: '${DB_PASSWORD}'
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      volumes:
+        - '../mysql:/var/lib/mysql'
+      networks:
+        - php
+
+    nginx:
+      image: nginx
+      container_name: nginx
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - app-volume:/usr/src/app/
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - '8080:80'
+      networks:
+        - php
+      depends_on:
+        - php
+
+networks:
+    php:
+
+volumes:
+  app-volume:

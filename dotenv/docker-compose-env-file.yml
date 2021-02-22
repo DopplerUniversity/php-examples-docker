@@ -1,6 +1,5 @@
 version: '3'
 services:
   php:
-    volumes:
-      # Override for volume mounting .env file
-      - ./.env:/usr/src/app/.env
+    volumes:      
+      - ./.env:/var/www/.env # Override for volume mounting .env file

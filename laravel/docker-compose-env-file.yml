@@ -1,0 +1,5 @@
+version: '3'
+services:
+  php:
+    volumes:      
+      - ./.env:/usr/src/app/.env # Mount .env file from host into container

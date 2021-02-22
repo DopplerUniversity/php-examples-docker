@@ -7,7 +7,7 @@ fi
 
 if [ !  -z $DOPPLER_TOKEN ]; then
     echo '\n[info]: Generating .env file using Doppler CLI\n'
-    doppler secrets download --no-file --format env > /usr/src/app/.env
+    doppler secrets download --no-file --format env > /var/www/.env
 else
     echo '\n[info]: $DOPPLER_TOKEN not found so skipping creation of .env file\n'
 fi

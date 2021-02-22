@@ -1,4 +1,4 @@
-<? require('/usr/src/app/config.php') ?>
+<? require __DIR__.'/../config.php' ?>
 <!doctype html>
 <html lang="en">
   <head>

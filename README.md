@@ -18,6 +18,17 @@ Also check out the `Makefile`, `bin` directories to see container run implementa
 - [Doppler CLI](https://docs.doppler.com/docs/enclave-installation-docker)
 - [jq](https://stedolan.github.io/jq/download/)
 
+## Set up
+
+We recommend creating a dedicated test project that you can delete later:
+
+```sh
+doppler projects create php
+doppler setup --project php --config dev
+```
+
+> NOTE: The Laravel example requires its own dedicated project as it requires a large and specific set of environment variables.
+
 ## Apache
 
 Example 1: Doppler created `env-vars.conf` mounted inside the container:
@@ -68,4 +79,25 @@ Example 2: Uses a custom Docker image with the Doppler CLI embedded but is bypas
 
 ```sh
 make dotenv-file
+```
+
+## Laravel
+
+The documentation for the Laravel sample code will be expanded upon soon, but until then, viewing the code in the Makefile and using that to jump to other relevant code is the best way to learn how use Doppler with Laravel.
+
+Here's a couple of important things to note that are not obvious about this solution:
+
+- The `doppler run` command is used run the scripts because the MySQL container needs the DB environment variables, as well as the Laravel app config via a `.env` file. Having all of your secrets in Doppler means you'll never get your MySQL DB secrets out of sync.
+- With the exception of `APP_URL` (because it is required for autoload optimization as part of `composer install`), every environment variable now has no default value. Troublshooting app config issues is much easier when there is only a single source of truth, and this is precisely what we built Doppler for.
+
+Example 1: Uses a custom Docker image with the Doppler CLI embedded to generate a `.env` file inside the Laravel app container (requires `DOPPLER_TOKEN` env var) :
+
+```sh
+make laravel-doppler-token
+```
+
+Example 2: Uses a custom Docker image with the Doppler CLI embedded but is bypassed as `DOPPLER_TOKEN` is not set and the Doppler generated `.env` file is mounted in the `php` container.
+
+```sh
+make laravel-dotenv-file
 ```

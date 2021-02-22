@@ -4,11 +4,9 @@ services:
     image: php:7-fpm
     container_name: php
     restart: unless-stopped
-    environment:
-      - DOPPLER_TOKEN
     volumes:
-      - ../app:/usr/src/app
-      - ../public:/var/www/html
+      - ../app:/var/www
+      - ./env-vars.conf:/usr/local/etc/php-fpm.d/env-vars.conf
     tty: true
     networks:
       - php
@@ -19,7 +17,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ../public:/var/www/html
+      - ../app:/var/www
       - ../nginx/php.conf:/etc/nginx/conf.d/default.conf
     ports:
       - '8080:80'

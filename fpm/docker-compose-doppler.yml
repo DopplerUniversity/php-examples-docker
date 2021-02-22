@@ -2,3 +2,5 @@ version: '3'
 services:
   php:
     image: doppler-php-fpm
+    environment:
+      - DOPPLER_TOKEN

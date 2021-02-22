@@ -1,0 +1,5 @@
+laravel/vendor
+**/Dockerfile
+**/docker-compose*
+mysql
+Makefile

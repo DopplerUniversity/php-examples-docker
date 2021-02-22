@@ -7,8 +7,7 @@ RUN (curl -Ls https://cli.doppler.com/install.sh || wget -qO- https://cli.dopple
     apt-get update && apt-get install jq -y && \
     apt-get remove --purge --auto-remove -y && rm -rf /var/lib/apt/lists/*
 
-COPY app /usr/src/app
-COPY public /var/www/html
+COPY app /var/www/
 
 # Override existing entrypoint script to conditionally generate env vars file if $DOPPLER_TOKEN var exists
 COPY apache/docker-php-entrypoint /usr/local/bin/
