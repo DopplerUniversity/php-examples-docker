@@ -87,4 +87,5 @@ laravel-doppler-token: laravel-build
 # Delete all Docker images and resource folders
 cleanup:
 	-docker image rm -f doppler-php-dotenv doppler-php-apache doppler-php-laravel
-	rm -fr mysql laravel/vendor
+	-rm -fr mysql laravel/vendor
+	-doppler projects delete laravel -y
