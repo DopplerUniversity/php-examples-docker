@@ -1,6 +1,10 @@
-# Using Doppler to configure PHP applications
+# PHP Environment Variables Secrets Management in Docker
 
-Shows different ways of using Doppler to provide configuration via environment variables for PHP applications with:
+![PHP Environment Variables Secrets Management in Docker](https://repository-images.githubusercontent.com/322144627/f71cbe74-5d96-43fe-8967-6a5955977a33)
+
+> NOTE: Using a Virtual Machine to host your PHP Laravel applications? Check out our dedicated [Laravel, PHP-FPM, and NGINX on Ubuntu respitory](https://github.com/DopplerUniversity/php-fpm-nginx-laravel).
+
+Shows different ways of using Doppler with Docker to provide secrets via environment variables for PHP applications with:
 
 - Apache
 - FPM with NGINX
